@@ -1,16 +1,13 @@
 import styled from "styled-components";
+import {PageWrapper} from "../styles/PageWrapper.styled";
 
 
 function HomePage() {
     return(
-        <HomePageWrapper>
+        <PageWrapper>
             Home Page
-        </HomePageWrapper>
+        </PageWrapper>
     );
 }
 
 export default HomePage;
-
-const HomePageWrapper = styled.div`
-  
-`;

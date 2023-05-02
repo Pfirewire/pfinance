@@ -1,17 +1,14 @@
 import styled from "styled-components";
 import LoginForm from "../components/forms/LoginForm";
+import {PageWrapper} from "../styles/PageWrapper.styled";
 
 
 function LoginPage() {
     return(
-        <LoginPageWrapper>
+        <PageWrapper>
             <LoginForm />
-        </LoginPageWrapper>
+        </PageWrapper>
     );
 }
 
 export default LoginPage;
-
-const LoginPageWrapper = styled.div`
-  
-`;
