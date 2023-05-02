@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import Link from '../simple/Link.js';
 
 
 function Navbar() {
     return(
         <NavbarWrapper>
-            <div>Home</div>
-            <div>Login</div>
+            <Link to={"/"}>Home</Link>
+            <Link to={"/login"}>Login</Link>
         </NavbarWrapper>
     )
 }
