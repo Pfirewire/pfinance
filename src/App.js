@@ -1,11 +1,15 @@
+import styled from "styled-components";
 
 
 function App() {
     return(
-        <div>
+        <AppWrapper>
             App
-        </div>
+        </AppWrapper>
     );
 }
 
 export default App;
+
+const AppWrapper = styled.div`
+`;
