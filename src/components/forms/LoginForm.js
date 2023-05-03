@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {setToken} from "../../store";
+import useNavigation from "../../hooks/use-navigation";
 
 
 function LoginForm() {
+    const {navigate} = useNavigation();
+    const dispatch = useDispatch();
     const [inputs, setInputs] = useState({});
 
     const handleChange = e => {
@@ -23,19 +28,10 @@ function LoginForm() {
                 password: inputs.password,
             })
         });
-        console.log(results);
         if(results.ok) {
             const data = await results.text();
-            console.log(data);
-            const getResults = await fetch("http://localhost:8080/api/groups", {
-                method: "GET",
-                headers: {
-                    'Authorization': `Bearer ${data}`,
-                },
-            });
-            console.log(getResults);
-            const getData = await getResults.json();
-            console.log(getData);
+            dispatch(setToken(data));
+            navigate("/");
         }
     };
 

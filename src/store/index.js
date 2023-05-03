@@ -2,7 +2,6 @@ import {configureStore} from "@reduxjs/toolkit";
 import {jwtReducer, setToken} from "./slices/JwtSlice";
 import {setupListeners} from "@reduxjs/toolkit/query";
 
-
 const store = configureStore({
     reducer: {
         jwt: jwtReducer,
