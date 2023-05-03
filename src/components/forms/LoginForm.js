@@ -13,29 +13,6 @@ function LoginForm() {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        // const bodyObject = JSON.stringify({
-        //     username: inputs.username,
-        //     password: inputs.password,
-        // });
-        // let formData = new FormData();
-        // formData.append('username', inputs.username);
-        // formData.append('password', inputs.password);
-        // console.log(bodyObject);
-        // const results = await fetch("http://localhost:8080/login", {
-        //     method: 'POST',
-        //     // headers: {
-        //     //     'Content-Type': 'application/x-www-form-urlencoded',
-        //     // },
-        //     body: formData
-        // });
-        // console.log(results);
-        // if(results.ok) {
-        //     console.log("Ok Response! Attempting to get token");
-        //     const tokenResults = await fetch("http://localhost:8080/token", {
-        //         method: 'POST',
-        //     });
-        //     console.log(tokenResults);
-        // }
         const results = await fetch("http://localhost:8080/login", {
             method: 'POST',
             headers: {
@@ -60,17 +37,6 @@ function LoginForm() {
             const getData = await getResults.json();
             console.log(getData);
         }
-
-        // if(results.ok) {
-        //     console.log("Ok response! trying to get token");
-        //     const tokenResults = await fetch("http://localhost:8080/token", {
-        //         method: 'POST',
-        //     });
-        //     console.log(tokenResults);
-        // } else {
-        //     console.log("Bad response!");
-        // }
-
     };
 
     return(
@@ -98,5 +64,16 @@ function LoginForm() {
 export default LoginForm;
 
 const LoginFormWrapper = styled.form`
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  margin: 0 auto;
+  h1 {
+    font-size: xxx-large;
+  }
+  button, input {
+    width: 100%;
+    margin-top: 1rem;
+  }
 `;
