@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import Link from '../simple/Link.js';
+import {useSelector} from "react-redux";
 
 
 function Navbar() {
+    const {token} = useSelector(state => state.jwt);
+
     return(
         <NavbarWrapper>
             <Link to={"/"}>Home</Link>
+            {token && <Link to={"/budget"}>Budget</Link>}
             <Link to={"/login"}>Login</Link>
         </NavbarWrapper>
     )
