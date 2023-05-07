@@ -1,6 +1,6 @@
 
 
-function BudgetGroup() {
+function Group() {
     return(
         <div>
             Group
@@ -8,4 +8,4 @@ function BudgetGroup() {
     )
 }
 
-export default BudgetGroup;
+export default Group;
