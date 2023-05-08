@@ -10,19 +10,19 @@ function ExpandablePanel({ header, children }) {
 
     return(
         <ExpandablePanelWrapper>
-            <div className='flex p-2 justify-between items-center'>
-                <div className='flex flex-row items-center justify-between'>
+            <ExpandablePanelHeaderWrapper>
+                <ExpandablePanelHeader>
                     {header}
-                </div>
-                <div onClick={handleClick} className='cursor-pointer'>
+                </ExpandablePanelHeader>
+                <ExpandablePanelHeaderIcon onClick={handleClick}>
                     {isExpanded ? <GoChevronDown /> : <GoChevronLeft />}
-                </div>
-            </div>
+                </ExpandablePanelHeaderIcon>
+            </ExpandablePanelHeaderWrapper>
             {
                 isExpanded &&
-                <div className='p-2 border-t'>
+                <ExpandablePanelChildrenWrapper>
                     {children}
-                </div>
+                </ExpandablePanelChildrenWrapper>
             }
         </ExpandablePanelWrapper>
     );
@@ -37,17 +37,25 @@ const ExpandablePanelWrapper = styled.div`
 `;
 
 const ExpandablePanelHeaderWrapper = styled.div`
+  isplay: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
   
 `;
 
 const ExpandablePanelHeader = styled.div`
-  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const ExpandablePanelHeaderIcon = styled.div`
-  
+  cursor: pointer;
 `;
 
 const ExpandablePanelChildrenWrapper = styled.div`
-  
+  padding: 0.5rem;
+  border-top-width: 1px;
 `;
