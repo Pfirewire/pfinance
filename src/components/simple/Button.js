@@ -1,4 +1,5 @@
 import className from 'classnames';
+import styled from "styled-components";
 
 function Button({
                     children,
@@ -12,41 +13,70 @@ function Button({
                     ...rest
                 }) {
 
-    const classes = className('flex items-center px-3 py-1.5 border', {
-        'border-blue-500 bg-blue-500': !outline && primary,
-        'border-gray-900 bg-gray-900': !outline && secondary,
-        'border-green-500 bg-green-500': !outline && success,
-        'border-yellow-400 bg-yellow-400': !outline && warning,
-        'border-red-500 bg-red-500': !outline && danger,
-        'rounded-full': rounded,
-        'text-white': !outline && (primary || secondary || success || danger),
-        'text-yellow-800': !outline && warning,
-        'bg-white': outline,
-        'text-blue-500': outline && primary,
-        'text-gray-900': outline && secondary,
-        'text-green-500': outline && success,
-        'text-yellow-600': outline && warning,
-        'text-red-500': outline && danger,
-    }, rest.className);
     return(
-        <button {...rest} className={classes}>{children}</button>
+        <ButtonWrapper {...rest} >{children}</ButtonWrapper>
     );
 }
 
-Button.propTypes = {
-    checkVariationValue: ({ primary, secondary, success, warning, danger }) => {
-        const count =
-            Number(!!primary) +
-            Number(!!secondary) +
-            Number(!!success) +
-            Number(!!warning) +
-            Number(!!danger)
-        ;
-
-        if(count > 1) {
-            return new Error(`Invalid props: Only one of primary, secondary, success, warning, or danger can be true`);
-        }
-    },
-};
-
 export default Button;
+
+const ButtonWrapper = styled.button`
+    display: flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid;
+
+    ${({ primary, secondary, success, warning, danger, outline }) => css`
+        ${!outline && primary && css`
+            border-color: #3b82f6;
+            background-color: #3b82f6;
+            color: #fff;
+        `}
+        ${!outline && secondary && css`
+            border-color: #1f2937;
+            background-color: #1f2937;
+            color: #fff;
+        `}
+        ${!outline && success && css`
+            border-color: #10b981;
+            background-color: #10b981;
+            color: #fff;
+        `}
+        ${!outline && warning && css`
+            border-color: #f59e0b;
+            background-color: #f59e0b;
+            color: #fff;
+        `}
+        ${!outline && danger && css`
+            border-color: #ef4444;
+            background-color: #ef4444;
+            color: #fff;
+        `}
+        ${outline && primary && css`
+            border-color: #3b82f6;
+            color: #3b82f6;
+        `}
+        ${outline && secondary && css`
+            border-color: #1f2937;
+            color: #1f2937;
+        `}
+        ${outline && success && css`
+            border-color: #10b981;
+            color: #10b981;
+        `}
+        ${outline && warning && css`
+            border-color: #f59e0b;
+            color: #f59e0b;
+        `}
+        ${outline && danger && css`
+            border-color: #ef4444;
+            color: #ef4444;
+        `}
+        ${rounded && css`
+            border-radius: 9999px;
+        `}
+        ${outline && css`
+            background-color: #fff;
+        `}
+    `}
+`;

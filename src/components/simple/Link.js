@@ -1,14 +1,11 @@
-import classNames from 'classnames';
 import useNavigation from "../../hooks/use-navigation";
+import styled from "styled-components";
 
-function Link({ to, children, className, activeClassName }) {
+function Link({ to, children, className, activeStyle }) {
     const { currentPath, navigate } = useNavigation();
 
-    const classes = classNames(
-        'text-blue-500',
-        className,
-        currentPath === to && activeClassName
-    );
+    const isActive = currentPath === to;
+
     const handleClick = (e) => {
         if(e.metaKey || e.ctrlKey) {
             return;
@@ -19,14 +16,25 @@ function Link({ to, children, className, activeClassName }) {
     };
 
     return(
-        <a
-            className={classes}
+        <LinkWrapper
+            className={className}
+            isActive={isActive}
+            activeStyle={activeStyle}
             onClick={handleClick}
             href={to}
         >
             {children}
-        </a>
+        </LinkWrapper>
     );
 }
 
 export default Link;
+
+const LinkWrapper = styled.a`
+    color: #3b82f6;
+    text-decoration: none;
+
+    ${({ isActive, activeStyle }) => isActive && css`
+        ${activeStyle}
+    `}
+`;
