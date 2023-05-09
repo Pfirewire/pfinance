@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import BudgetPage from "./pages/BudgetPage";
 import {useSelector} from "react-redux";
+import TestPage from "./pages/TestPage";
 
 function App() {
     const {jwtToken} = useSelector(state => state.keys);
@@ -14,6 +15,9 @@ function App() {
             <AppRoutesWrapper>
                 <Route path={"/"}>
                     <HomePage />
+                </Route>
+                <Route path={"/test"}>
+                    <TestPage />
                 </Route>
                 <Route path={"/budget"}>
                     <BudgetPage />
@@ -30,6 +34,9 @@ function App() {
             <AppRoutesWrapper>
                 <Route path={"/"}>
                     <HomePage />
+                </Route>
+                <Route path={"/test"}>
+                    <TestPage />
                 </Route>
                 <Route path={"/login"}>
                     <LoginPage />

@@ -9,6 +9,7 @@ function Navbar() {
     return(
         <NavbarWrapper>
             <Link to={"/"}>Home</Link>
+            <Link to={"/test"}>Tests</Link>
             {jwtToken && <Link to={"/budget"}>Budget</Link>}
             <Link to={"/login"}>Login</Link>
         </NavbarWrapper>
