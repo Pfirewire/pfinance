@@ -37,7 +37,7 @@ function TestPage() {
                 method: "GET",
             }
         }
-        const results = await fetch("http://localhost:8080/test/has-access-token", options);
+        const results = await fetch("http://localhost:8080/user/status", options);
         const data = await results.json();
         console.log(data);
     }
