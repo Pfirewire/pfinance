@@ -4,12 +4,12 @@ import {useSelector} from "react-redux";
 
 
 function Navbar() {
-    const {token} = useSelector(state => state.jwt);
+    const {jwtToken} = useSelector(state => state.keys);
 
     return(
         <NavbarWrapper>
             <Link to={"/"}>Home</Link>
-            {token && <Link to={"/budget"}>Budget</Link>}
+            {jwtToken && <Link to={"/budget"}>Budget</Link>}
             <Link to={"/login"}>Login</Link>
         </NavbarWrapper>
     )

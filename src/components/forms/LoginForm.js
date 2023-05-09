@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {setToken} from "../../store";
+import {setJwtToken} from "../../store";
 import useNavigation from "../../hooks/use-navigation";
 
 
@@ -30,7 +30,7 @@ function LoginForm() {
         });
         if(results.ok) {
             const data = await results.text();
-            dispatch(setToken(data));
+            dispatch(setJwtToken(data));
             navigate("/");
         }
     };

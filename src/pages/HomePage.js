@@ -5,26 +5,26 @@ import {useEffect} from "react";
 
 
 function HomePage() {
-    const {token} = useSelector(state => state.jwt);
+    const {jwtToken} = useSelector(state => state.keys);
 
     useEffect(() => {
         const getGroups = async () => {
             const results = await fetch("http://localhost:8080/api/groups", {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${token}`,
+                    'Authorization': `Bearer ${jwtToken}`,
                 },
             });
             console.log(results);
         };
-        if(token) {
+        if(jwtToken) {
             getGroups();
         }
     });
 
     return(
         <PageWrapper>
-            {token ? 'Token Received' : 'Home Page'}
+            {jwtToken ? 'Token Received' : 'Home Page'}
         </PageWrapper>
     );
 }

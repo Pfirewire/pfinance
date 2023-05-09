@@ -7,7 +7,7 @@ import BudgetPage from "./pages/BudgetPage";
 import {useSelector} from "react-redux";
 
 function App() {
-    const {token} = useSelector(state => state.jwt);
+    const {jwtToken} = useSelector(state => state.keys);
 
     const AuthenticatedApp = () => {
         return(
@@ -41,7 +41,7 @@ function App() {
     return(
         <AppWrapper>
             <Navbar />
-            {token ? AuthenticatedApp() : UnauthenticatedApp()}
+            {jwtToken ? AuthenticatedApp() : UnauthenticatedApp()}
         </AppWrapper>
     );
 }

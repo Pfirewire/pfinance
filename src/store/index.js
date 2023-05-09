@@ -1,10 +1,10 @@
 import {configureStore} from "@reduxjs/toolkit";
-import {jwtReducer, setToken} from "./slices/JwtSlice";
+import {keysReducer, setJwtToken, setLinkToken} from "./slices/KeysSlice";
 import {setupListeners} from "@reduxjs/toolkit/query";
 
 const store = configureStore({
     reducer: {
-        jwt: jwtReducer,
+        keys: keysReducer,
     },
 });
 
@@ -12,5 +12,6 @@ setupListeners(store.dispatch);
 
 export {
     store,
-    setToken
+    setJwtToken,
+    setLinkToken
 };
