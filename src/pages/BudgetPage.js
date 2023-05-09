@@ -33,8 +33,20 @@ function BudgetPage() {
     }, []);
 
     const config = {
-        onSuccess: (public_token, metadata) => {
+        onSuccess: async (public_token, metadata) => {
             console.log("Success");
+            console.log(public_token);
+            console.log(metadata);
+            const results = await fetch("http://localhost:8080/api/plaid/exchange-public-token", {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${jwtToken}`,
+                },
+                body: public_token
+            });
+            console.log(results);
+            const data = await results.text();
+            console.log(data);
         },
         onExit: (err, metadata) => {
             console.log("Exited")
