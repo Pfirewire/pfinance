@@ -28,3 +28,4 @@ function Modal({ onClose, children, actionBar }) {
 }
 
 export default Modal;
+
