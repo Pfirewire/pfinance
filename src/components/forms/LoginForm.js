@@ -1,14 +1,45 @@
 import styled from "styled-components";
-import {useState} from "react";
-import {useDispatch} from "react-redux";
-import {setJwtToken} from "../../store";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {setJwtToken, setLinkToken} from "../../store";
 import useNavigation from "../../hooks/use-navigation";
+import {usePlaidLink} from "react-plaid-link";
 
 
 function LoginForm() {
     const {navigate} = useNavigation();
     const dispatch = useDispatch();
+    const {jwtToken, linkToken} = useSelector(state => state.keys);
     const [inputs, setInputs] = useState({});
+
+    const checkUserStatus = async token => {
+        console.log("Inside checkUserStatus");
+        console.log(token);
+        const results = await fetch("http://localhost:8080/user/status", {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        });
+        const data = await results.json();
+        console.log(data);
+        return data;
+    };
+
+    const createLinkToken = async token => {
+
+        const results = await fetch("http://localhost:8080/api/plaid/create-link-token", {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        console.log(results);
+        const data = await results.text();
+        console.log(data);
+        await dispatch(setLinkToken(data));
+        console.log(linkToken);
+    };
 
     const handleChange = e => {
         const name = e.target.name;
@@ -30,10 +61,51 @@ function LoginForm() {
         });
         if(results.ok) {
             const data = await results.text();
-            dispatch(setJwtToken(data));
-            navigate("/");
+            await dispatch(setJwtToken(data));
+            const userStatus = await checkUserStatus(data);
+            console.log(userStatus.tokenExists);
+            if(!userStatus.tokenExists){
+                console.log("token does not exist. going into createLinkToken");
+                await createLinkToken(data);
+            } else {
+                navigate("/");
+            }
         }
     };
+
+    const config = {
+        onSuccess: async (public_token, metadata) => {
+            console.log("Success");
+            console.log(public_token);
+            console.log(metadata);
+            const results = await fetch("http://localhost:8080/api/plaid/exchange-public-token", {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${jwtToken}`,
+                },
+                body: public_token
+            });
+            console.log(results);
+            const data = await results.text();
+            console.log(data);
+            navigate("/");
+        },
+        onExit: (err, metadata) => {
+            console.log("Exited")
+        },
+        onEvent: (eventName, metadata) => {
+            console.log("Event")
+        },
+        token: linkToken,
+    };
+
+    const { open, exit, ready } = usePlaidLink(config);
+
+    useEffect(() => {
+        if(ready) {
+            open()
+        }
+    }, [open, ready]);
 
     return(
         <LoginFormWrapper onSubmit={handleSubmit}>
