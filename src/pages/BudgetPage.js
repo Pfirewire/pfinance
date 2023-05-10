@@ -1,10 +1,11 @@
 import {PageWrapper} from "../styles/PageWrapper.styled";
+import GroupList from "../components/budget/GroupList";
 
 function BudgetPage() {
 
     return(
         <PageWrapper>
-            This should only show if authenticated
+            <GroupList />
         </PageWrapper>
     );
 }

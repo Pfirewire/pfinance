@@ -29,5 +29,6 @@ const budgetApi = createApi({
 });
 
 export const {
-    getFetchBudgetQuery
+    useFetchBudgetQuery
 } = budgetApi;
+export {budgetApi};
