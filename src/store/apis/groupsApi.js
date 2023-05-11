@@ -18,6 +18,13 @@ const groupsApi = createApi({
     endpoints(builder) {
         return {
             fetchGroups: builder.query({
+                providesTags: (result, error, arg) => {
+                    const tags = result.map(group => {
+                        return { type: 'Group', id: group.id };
+                    });
+                    tags.push( {type: 'AllGroups' });
+                    return tags;
+                },
                 query() {
                     return {
                         url: "/groups",
@@ -25,6 +32,9 @@ const groupsApi = createApi({
                 },
             }),
             addGroup: builder.mutation({
+                invalidatesTags: (result, error, arg) => {
+                    return [{ type: 'AllGroups'}];
+                },
                 query: (name) => {
                     return {
                         url: "/groups",
@@ -40,6 +50,7 @@ const groupsApi = createApi({
 });
 
 export const {
-    useFetchGroupsQuery
+    useFetchGroupsQuery,
+    useAddGroupMutation,
 } = groupsApi;
 export {groupsApi};

@@ -26,7 +26,7 @@ const ButtonWrapper = styled.button`
     padding: 0.375rem 0.75rem;
     border: 1px solid;
 
-    ${({ primary, secondary, success, warning, danger, outline }) => css`
+    ${({ primary, secondary, success, warning, danger, rounded, outline }) => css`
         ${!outline && primary && css`
             border-color: #3b82f6;
             background-color: #3b82f6;

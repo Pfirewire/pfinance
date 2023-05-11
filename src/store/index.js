@@ -25,4 +25,5 @@ export {
 
 export {
     useFetchGroupsQuery,
+    useAddGroupMutation,
 } from './apis/groupsApi';
