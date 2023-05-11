@@ -1,14 +1,15 @@
 import styled from "styled-components";
-import {useFetchBudgetQuery} from "../../store";
+import {useFetchGroupsQuery} from "../../store";
+import GroupItem from "./GroupItem";
 
 
 function GroupList() {
-    const { data, error, isFetching } = useFetchBudgetQuery();
+    const { data, error, isFetching } = useFetchGroupsQuery();
 
     let content;
     if(isFetching) content = <div>Loading...</div>;
     else if(error) content = <div>Error fetching groups</div>;
-    else content = data.map(group => <div key={group.id}>{group.name}</div>);
+    else content = data.map(group => <GroupItem key={group.id} group={group} />);
 
     return(
         <GroupListWrapper>

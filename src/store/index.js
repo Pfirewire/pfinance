@@ -1,16 +1,16 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {keysReducer, setJwtToken, setLinkToken} from "./slices/KeysSlice";
 import {setupListeners} from "@reduxjs/toolkit/query";
-import {budgetApi} from "./apis/budgetApi";
+import {groupsApi} from "./apis/groupsApi";
 
 const store = configureStore({
     reducer: {
         keys: keysReducer,
-        [budgetApi.reducerPath]: budgetApi.reducer,
+        [groupsApi.reducerPath]: groupsApi.reducer,
     },
     middleware: (getDefaultMiddleware) => {
         return getDefaultMiddleware()
-            .concat(budgetApi.middleware)
+            .concat(groupsApi.middleware)
         ;
     },
 });
@@ -24,5 +24,5 @@ export {
 };
 
 export {
-    useFetchBudgetQuery,
-} from './apis/budgetApi';
+    useFetchGroupsQuery,
+} from './apis/groupsApi';

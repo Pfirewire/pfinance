@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 
-function GroupItem() {
+function GroupItem({ group }) {
     return(
         <GroupItemWrapper>
-            Group Item
+            {group.name}
         </GroupItemWrapper>
     );
 }

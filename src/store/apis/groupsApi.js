@@ -3,8 +3,8 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
 
 
-const budgetApi = createApi({
-    reducerPath: 'budget',
+const groupsApi = createApi({
+    reducerPath: 'groups',
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8080/api',
         prepareHeaders: (headers, { getState }) => {
@@ -17,10 +17,21 @@ const budgetApi = createApi({
     }),
     endpoints(builder) {
         return {
-            fetchBudget: builder.query({
+            fetchGroups: builder.query({
                 query() {
                     return {
                         url: "/groups",
+                    };
+                },
+            }),
+            addGroup: builder.mutation({
+                query: (name) => {
+                    return {
+                        url: "/groups",
+                        method: 'POST',
+                        body: {
+                            name: name,
+                        },
                     };
                 },
             }),
@@ -29,6 +40,6 @@ const budgetApi = createApi({
 });
 
 export const {
-    useFetchBudgetQuery
-} = budgetApi;
-export {budgetApi};
+    useFetchGroupsQuery
+} = groupsApi;
+export {groupsApi};
