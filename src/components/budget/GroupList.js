@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {useAddGroupMutation, useFetchGroupsQuery} from "../../store";
 import GroupItem from "./GroupItem";
-import Button from "../simple/Button";
+import AddButton from "../simple/AddButton";
 
 
 function GroupList() {
@@ -21,7 +21,9 @@ function GroupList() {
         <GroupListWrapper>
             <GroupListHeaderWrapper>
                 <h3>Groups/Categories</h3>
-                <Button onClick={handleAddGroup} />
+                <AddButton onClick={handleAddGroup} loading={results.isLoading}>
+                    + Add Group
+                </AddButton>
             </GroupListHeaderWrapper>
             <GroupListContentWrapper>
                 {content}
