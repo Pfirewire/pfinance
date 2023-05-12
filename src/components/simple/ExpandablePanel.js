@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { GoChevronDown, GoChevronLeft } from "react-icons/go";
+import styled from "styled-components";
 
 function ExpandablePanel({ header, children }) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -37,7 +38,7 @@ const ExpandablePanelWrapper = styled.div`
 `;
 
 const ExpandablePanelHeaderWrapper = styled.div`
-  isplay: flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
@@ -46,6 +47,7 @@ const ExpandablePanelHeaderWrapper = styled.div`
 
 const ExpandablePanelHeader = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

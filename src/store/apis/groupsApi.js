@@ -52,10 +52,21 @@ const groupsApi = createApi({
                 query: group => {
                     return {
                         url: `/group/${group.id}`,
-                        method: 'POST',
+                        method: 'PUT',
                         body: {
                             name: group.name
                         },
+                    };
+                },
+            }),
+            deleteGroup: builder.mutation({
+                invalidatesTags: (result, error, arg) => {
+                    return [{ type: 'Group', id: arg.id }];
+                },
+                query: group => {
+                    return {
+                        url: `/group/${group.id}`,
+                        method: 'DELETE',
                     };
                 },
             }),
@@ -67,5 +78,6 @@ export const {
     useFetchGroupsQuery,
     useAddGroupMutation,
     useEditGroupMutation,
+    useDeleteGroupMutation,
 } = groupsApi;
 export {groupsApi};
