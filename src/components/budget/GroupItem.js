@@ -5,23 +5,52 @@ import IconButton from "../simple/IconButton";
 import {GoPencil, GoTrashcan} from "react-icons/go";
 import ExpandablePanel from "../simple/ExpandablePanel";
 import BucketList from "./BucketList";
+import Button from "../simple/Button";
+import Modal from "../simple/Modal";
 
 
 function GroupItem({ group }) {
     const [editGroup, editResults] = useEditGroupMutation();
     const [deleteGroup, deleteResults] = useDeleteGroupMutation();
     const [groupName, setGroupName] = useState(group.name);
+    const [showModal, setShowModal] = useState(false);
+
+    const handleEditGroupClick = () => {
+        setShowModal(true);
+    };
+
+    const handleEditGroupClose = () => {
+        setShowModal(false);
+        setGroupName(group.name);
+    };
+
+    const handleEditGroupNameChange = e => {
+        setGroupName(e.target.value);
+    };
 
     const handleEditGroup = () => {
         editGroup({
             id: group.id,
-            name: "edited title",
+            name: groupName,
         });
+        handleEditGroupClose();
     };
 
     const handleDeleteGroup = () => {
         deleteGroup(group);
     };
+
+    const actionBar = (
+        <div>
+            <Button onClick={handleEditGroup} primary>I Accept</Button>
+        </div>
+    );
+
+    const modal = (
+        <Modal onClose={handleEditGroupClose} actionBar={actionBar}>
+            <input type={"text"} onChange={handleEditGroupNameChange} value={groupName} />
+        </Modal>
+    );
 
     const header = (
         <>
@@ -32,7 +61,7 @@ function GroupItem({ group }) {
                 <IconButton className={"delete"} onClick={handleDeleteGroup} loading={deleteResults.isLoading}>
                     <GoTrashcan />
                 </IconButton>
-                <IconButton className={"edit"} onClick={handleEditGroup} loading={editResults.isLoading}>
+                <IconButton className={"edit"} onClick={handleEditGroupClick} loading={editResults.isLoading}>
                     <GoPencil />
                 </IconButton>
             </IconWrapper>
@@ -40,9 +69,12 @@ function GroupItem({ group }) {
     );
 
     return(
-        <ExpandablePanel key={group.id} header={header}>
-            <BucketList />
-        </ExpandablePanel>
+        <>
+            {showModal && modal}
+            <ExpandablePanel key={group.id} header={header}>
+                <BucketList />
+            </ExpandablePanel>
+        </>
     );
 }
 
