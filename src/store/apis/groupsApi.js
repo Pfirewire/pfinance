@@ -33,14 +33,28 @@ const groupsApi = createApi({
             }),
             addGroup: builder.mutation({
                 invalidatesTags: (result, error, arg) => {
-                    return [{ type: 'AllGroups'}];
+                    return [{ type: 'AllGroups' }];
                 },
-                query: (name) => {
+                query: name => {
                     return {
                         url: "/groups",
                         method: 'POST',
                         body: {
                             name: name,
+                        },
+                    };
+                },
+            }),
+            editGroup: builder.mutation({
+                invalidatesTags:(result, error, arg) => {
+                    return [{ type: 'Group', id: arg.id }];
+                },
+                query: group => {
+                    return {
+                        url: `/group/${group.id}`,
+                        method: 'POST',
+                        body: {
+                            name: group.name
                         },
                     };
                 },
@@ -52,5 +66,6 @@ const groupsApi = createApi({
 export const {
     useFetchGroupsQuery,
     useAddGroupMutation,
+    useEditGroupMutation,
 } = groupsApi;
 export {groupsApi};
