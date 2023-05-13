@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import BudgetPage from "./pages/BudgetPage";
 import {useSelector} from "react-redux";
 import TestPage from "./pages/TestPage";
+import "./fonts/Cera Pro Black.ttf";
 
 function App() {
     const {jwtToken} = useSelector(state => state.keys);
@@ -56,7 +57,9 @@ function App() {
 export default App;
 
 const AppWrapper = styled.div`
-  
+  background-color: #172a3a;
+  color: #75dddd;
+  min-height: 100vh;
 `;
 
 const AppRoutesWrapper = styled.section`

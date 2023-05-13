@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setJwtToken, setLinkToken} from "../../store";
 import useNavigation from "../../hooks/use-navigation";
 import {usePlaidLink} from "react-plaid-link";
+import Button from "../simple/Button";
 
 
 function LoginForm() {
@@ -124,7 +125,7 @@ function LoginForm() {
                 value={inputs.password || ""}
                 onChange={handleChange}
             />
-            <button type={"submit"}>Submit</button>
+            <Button primary type={"submit"}>Submit</Button>
         </LoginFormWrapper>
     );
 }
