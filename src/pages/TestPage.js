@@ -40,7 +40,24 @@ function TestPage() {
         const results = await fetch("http://localhost:8080/user/status", options);
         const data = await results.json();
         console.log(data);
-    }
+    };
+
+    const handleTestBalanceGetClick = () => {
+        let options;
+        if(jwtToken) {
+            options = {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${jwtToken}`,
+                }
+            }
+        } else {
+            options = {
+                method: "GET",
+            }
+        }
+        fetch("http://localhost:8080/api/balance/get", options);
+    };
 
     return(
         <div>
@@ -48,6 +65,7 @@ function TestPage() {
             <br />
             <button onClick={handleUserTestClick}>Test User Exists</button>
             <button onClick={handleAccessTokenClick}>Test Access Button Exists</button>
+            <button onClick={handleTestBalanceGetClick}>Test Get Balance</button>
         </div>
     );
 }
