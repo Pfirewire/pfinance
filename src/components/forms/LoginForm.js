@@ -140,6 +140,7 @@ const LoginFormWrapper = styled.form`
   margin: 0 auto;
   h1 {
     font-size: xxx-large;
+    //font-weight: bold;
   }
   button, input {
     width: 100%;

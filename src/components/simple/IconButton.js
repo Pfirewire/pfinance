@@ -23,9 +23,10 @@ const ButtonWrapper = styled.button`
   background-color: #3b82f6;
   color: #fff;
   border-radius: 5px;
+  font-size: x-large;
   
   &.delete {
-    background-color: rgb(239 68 68);
+    background-color: var(--warm-red);
   }
   
   &.edit {

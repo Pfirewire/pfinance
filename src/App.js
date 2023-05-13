@@ -57,8 +57,8 @@ function App() {
 export default App;
 
 const AppWrapper = styled.div`
-  background-color: #172a3a;
-  color: #75dddd;
+  background-color: var(--prussian-blue);
+  color: var(--tiffany-blue);
   min-height: 100vh;
 `;
 

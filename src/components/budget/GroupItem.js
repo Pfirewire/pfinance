@@ -58,12 +58,12 @@ function GroupItem({ group }) {
                 {group.name}
             </div>
             <IconWrapper>
-                <IconButton className={"delete"} onClick={handleDeleteGroup} loading={deleteResults.isLoading}>
+                <Button danger onClick={handleDeleteGroup} loading={deleteResults.isLoading}>
                     <GoTrashcan />
-                </IconButton>
-                <IconButton className={"edit"} onClick={handleEditGroupClick} loading={editResults.isLoading}>
+                </Button>
+                <Button secondary onClick={handleEditGroupClick} loading={editResults.isLoading}>
                     <GoPencil />
-                </IconButton>
+                </Button>
             </IconWrapper>
         </>
     );
@@ -87,4 +87,7 @@ const GroupItemWrapper = styled.div`
 const IconWrapper = styled.div`
   display: flex;
   align-items: center;
+  button {
+    margin: 0 0.25rem;
+  }
 `;

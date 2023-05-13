@@ -28,15 +28,15 @@ const NavbarWrapper = styled.nav`
   align-items: center;
   position: sticky;
   padding: 1rem;
-  background-color: #75dddd;
-  color: #172a3a;
+  background-color: var(--tiffany-blue);
+  color: var(--prussian-blue);
   
   a {
     margin: 0 2rem;
   }
   
   a:visited {
-    color: #172a3a;
+    color: var(--prussian-blue);
   }
   
   div {

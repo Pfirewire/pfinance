@@ -20,8 +20,8 @@ const ButtonContainer = styled.button`
   ${({ primary, secondary, success, warning, danger, outline }) => {
     if (primary) {
         return css`
-        border-color: #3b82f6;
-        background-color: #3b82f6;
+        border-color: var(--primary-blue);
+        background-color: var(--primary-blue);
         color: #fff;
         &:hover {
           background-color: #2563eb;
