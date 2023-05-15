@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import {useAddGroupMutation, useFetchGroupsQuery} from "../../store";
 import GroupItem from "./GroupItem";
-import AddButton from "../simple/AddButton";
 import {useState} from "react";
 import Button from "../simple/Button";
 import Modal from "../simple/Modal";
@@ -54,9 +53,9 @@ function GroupList() {
             {showModal && modal}
             <GroupListHeaderWrapper>
                 <h3>Groups/Categories</h3>
-                <AddButton onClick={handleAddGroupClick} loading={results.isLoading}>
+                <Button onClick={handleAddGroupClick} loading={results.isLoading} primary>
                     + Add Group
-                </AddButton>
+                </Button>
             </GroupListHeaderWrapper>
             <GroupListContentWrapper>
                 {content}

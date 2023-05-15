@@ -31,7 +31,7 @@ function Link({ to, children, className, activeStyle }) {
 export default Link;
 
 const LinkWrapper = styled.a`
-    color: #3b82f6;
+    color: #75dddd;
     text-decoration: none;
 
     ${({ isActive, activeStyle }) => isActive && css`

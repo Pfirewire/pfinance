@@ -8,9 +8,11 @@ function Navbar() {
 
     return(
         <NavbarWrapper>
-            <Link to={"/"}>Home</Link>
-            <Link to={"/test"}>Tests</Link>
-            {jwtToken && <Link to={"/budget"}>Budget</Link>}
+            <div>
+                <Link to={"/"}>Home</Link>
+                <Link to={"/test"}>Tests</Link>
+                {jwtToken && <Link to={"/budget"}>Budget</Link>}
+            </div>
             <Link to={"/login"}>Login</Link>
         </NavbarWrapper>
     )
@@ -26,10 +28,20 @@ const NavbarWrapper = styled.nav`
   align-items: center;
   position: sticky;
   padding: 1rem;
-  background-color: darkslategrey;
-  color: white;
+  background-color: var(--tiffany-blue);
+  color: var(--prussian-blue);
+  
+  a {
+    margin: 0 2rem;
+  }
   
   a:visited {
-    color: white;
+    color: var(--prussian-blue);
+  }
+  
+  div {
+    display: flex;
+    align-items: center;
+    
   }
 `;
