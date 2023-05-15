@@ -1,9 +1,5 @@
 import { useState } from "react";
-<<<<<<< HEAD
 import {GoChevronDown, GoChevronRight} from "react-icons/go";
-=======
-import {GoChevronDown, GoChevronLeft, GoChevronRight} from "react-icons/go";
->>>>>>> fb28da83d51c56bb566e17ab956a2391ec5fa240
 import styled from "styled-components";
 
 function ExpandablePanel({ header, children }) {
