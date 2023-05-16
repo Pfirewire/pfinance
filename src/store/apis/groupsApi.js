@@ -71,7 +71,7 @@ const groupsApi = createApi({
                 },
             }),
         };
-    }
+    },
 });
 
 export const {
