@@ -32,3 +32,8 @@ const bucketsApi = createApi({
         };
     },
 });
+
+export const {
+    useFetchBucketsByGroupQuery,
+} = bucketsApi;
+export {bucketsApi};
