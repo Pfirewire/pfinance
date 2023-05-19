@@ -31,15 +31,15 @@ const NavbarWrapper = styled.nav`
   background-color: var(--tiffany-blue);
   color: var(--prussian-blue);
   
-  a {
+  & a {
     margin: 0 2rem;
   }
   
-  a:visited {
+  & a:visited {
     color: var(--prussian-blue);
   }
   
-  div {
+  & div {
     display: flex;
     align-items: center;
     

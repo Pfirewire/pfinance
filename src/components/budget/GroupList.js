@@ -42,7 +42,6 @@ function GroupList() {
         </Modal>
     );
 
-
     let content;
     if(isFetching) content = <div>Loading...</div>;
     else if(error) content = <div>Error fetching groups</div>;
