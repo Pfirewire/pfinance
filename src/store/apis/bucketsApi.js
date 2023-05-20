@@ -29,11 +29,29 @@ const bucketsApi = createApi({
                     };
                 },
             }),
+            addBucket: builder.mutation({
+                invalidatesTags: (result, error, arg) => {
+                  return [{type:"GroupBuckets", id:arg.group.id}]
+                },
+                query: bucket => {
+                    return {
+                        url: `/buckets/${bucket.group.id}`,
+                        method: 'POST',
+                        body: {
+                            name: bucket.name,
+                            recurringAmount: bucket.recurringAmount,
+                            maximumAmount: bucket.maximumAmount,
+                            group: bucket.group,
+                        }
+                    }
+                }
+            })
         };
     },
 });
 
 export const {
     useFetchBucketsByGroupQuery,
+    useAddBucketMutation,
 } = bucketsApi;
 export {bucketsApi};

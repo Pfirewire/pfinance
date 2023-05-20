@@ -1,16 +1,109 @@
 import styled from "styled-components";
+import {useAddBucketMutation, useFetchBucketsByGroupQuery} from "../../store";
+import {useState} from "react";
+import GroupItem from "./GroupItem";
+import BucketItem from "./BucketItem";
+import Modal from "../simple/Modal";
+import Button from "../simple/Button";
 
 
-function BucketList() {
+function BucketList({group}) {
+    const {data, error, isFetching } = useFetchBucketsByGroupQuery(group);
+    const [addBucket, results] = useAddBucketMutation();
+    const [showModal, setShowModal] = useState(false);
+    const [bucketName, setBucketName] = useState( " ");
+    const [bucketRecurringAmount, setBucketRecurringAmount] = useState(0);
+    const [bucketMaximumAmount, setBucketMaximumAmount] = useState(0);
+
+    const handleAddBucket = () => {
+        addBucket({
+            name: bucketName,
+            recurringAmount: bucketRecurringAmount,
+            maximumAmount: bucketMaximumAmount,
+            group : group
+
+        });
+
+        handleAddBucketClose();
+    }
+
+    const handleAddBucketClose = () => {
+        setShowModal(false);
+        setBucketName("");
+        setBucketRecurringAmount(0);
+        setBucketMaximumAmount(0);
+
+    }
+
+    const handleAddBucketNameChange = e => {
+        setBucketName(e.target.value);
+    }
+
+    const handleAddBucketMaximumChange = e => {
+        setBucketMaximumAmount(e.target.value);
+
+    }
+
+    const handleAddBucketRecurringChange = e => {
+        setBucketRecurringAmount(e.target.value);
+    }
+
+    const handleAddBucketClick = () => {
+        setShowModal(true);
+    }
+
+    const modalActionBar = (
+        <div>
+            <Button onClick={handleAddBucket} primary>Add Bucket</Button>
+        </div>
+    );
+
+    const modal = (
+      <Modal onClose={handleAddBucketClose} actionBar={modalActionBar}>
+          <input type={"text"} onChange={handleAddBucketNameChange} placeholder={"Bucket Name"}/>
+          <input type={"number"} onChange={handleAddBucketRecurringChange} placeholder={"Recurring Amount"}/>
+          <input type={"number"} onChange={handleAddBucketMaximumChange} placeholder={"Maximum Amount"}/>
+      </Modal>
+    );
+
+    let content;
+    if(isFetching) content = <div>Loading...</div>;
+    else if(error) content = <div>Error fetching buckets</div>;
+    else content = data.map(bucket => <BucketItem key={bucket.id} bucket={bucket} />);
+
     return(
         <BucketListWrapper>
-            Bucket List
+            {showModal && modal}
+            <BucketListHeader>
+                <h3>Buckets</h3>
+                <Button onClick={handleAddBucketClick} loading={results.isLoading} primary>
+                    Add Bucket
+
+                </Button>
+
+            </BucketListHeader>
+            <BucketListContent>
+                {content}
+            </BucketListContent>
         </BucketListWrapper>
     );
 }
 
 export default BucketList;
 
-const BucketListWrapper = styled.div`
+const BucketListWrapper = styled.div``;
+
+const BucketListContent = styled.div``;
+
+
+const BucketListHeader = styled.div` 
+      margin: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   
-`;
+  &h3 {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  `;

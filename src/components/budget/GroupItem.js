@@ -72,7 +72,7 @@ function GroupItem({ group }) {
         <>
             {showModal && modal}
             <ExpandablePanel key={group.id} header={header}>
-                <BucketList />
+                <BucketList group={group}/>
             </ExpandablePanel>
         </>
     );

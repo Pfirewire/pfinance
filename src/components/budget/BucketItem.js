@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 
-function BucketItem() {
+function BucketItem({bucket}) {
     return(
         <BucketItemWrapper>
-            Bucket Item
+            {bucket.name}
+            {bucket.recurringAmount}
+            {bucket.maximumAmount}
         </BucketItemWrapper>
     );
 }
