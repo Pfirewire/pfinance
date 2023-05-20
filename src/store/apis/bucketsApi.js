@@ -63,6 +63,17 @@ const bucketsApi = createApi({
                     };
                 },
             }),
+            deleteBucket: builder.mutation({
+                invalidatesTags: (result, error, arg) => {
+                    return [{ type: 'Bucket', id: arg.id }];
+                },
+                query: bucket => {
+                    return {
+                        url: `/bucket/${bucket.id}`,
+                        method: 'DELETE',
+                    };
+                },
+            }),
         };
     },
 });
@@ -71,5 +82,6 @@ export const {
     useFetchBucketsByGroupQuery,
     useAddBucketMutation,
     useEditBucketMutation,
+    useDeleteBucketMutation,
 } = bucketsApi;
 export {bucketsApi};
