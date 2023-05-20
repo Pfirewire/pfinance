@@ -36,4 +36,5 @@ export {
 export {
     useFetchBucketsByGroupQuery,
     useAddBucketMutation,
+    useEditBucketMutation,
 } from './apis/bucketsApi';

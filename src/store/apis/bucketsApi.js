@@ -45,7 +45,24 @@ const bucketsApi = createApi({
                         }
                     }
                 }
-            })
+            }),
+            editBucket: builder.mutation({
+                invalidatesTags: (result, error, arg) => {
+                    return [{ type: 'Bucket', id: arg.id }];
+                },
+                query: bucket => {
+                    return {
+                        url: `/bucket/${bucket.id}`,
+                        method: 'PUT',
+                        body: {
+                            name: bucket.name,
+                            recurringAmount: bucket.recurringAmount,
+                            maximumAmount: bucket.maximumAmount,
+                            group: bucket.group,
+                        },
+                    };
+                },
+            }),
         };
     },
 });
@@ -53,5 +70,6 @@ const bucketsApi = createApi({
 export const {
     useFetchBucketsByGroupQuery,
     useAddBucketMutation,
+    useEditBucketMutation,
 } = bucketsApi;
 export {bucketsApi};
