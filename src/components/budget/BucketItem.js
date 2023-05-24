@@ -18,22 +18,23 @@ function BucketItem({bucket}) {
 
     return(
         <BucketItemWrapper>
-            <BucketHeader>
-                <div>
-                    {bucket.name}
-                </div>
-                <IconWrapper>
-                    <Button danger onClick={handleDeleteBucket} loading={deleteResults.isLoading}>
-                        <GoTrashcan />
-                    </Button>
-                    <Button secondary onClick={handleEditBucketClick} loading={editResults.isLoading}>
-                        <GoPencil />
-                    </Button>
-                </IconWrapper>
-            </BucketHeader>
-            {bucket.name}
-            {bucket.recurringAmount}
-            {bucket.maximumAmount}
+            <BucketName>
+                {bucket.name}
+            </BucketName>
+            <div>
+                Recurring Amount: {bucket.recurringAmount}
+            </div>
+            <div>
+                Max Amount: {bucket.maximumAmount}
+            </div>
+            <IconWrapper>
+                <Button danger onClick={handleDeleteBucket} loading={deleteResults.isLoading}>
+                    <GoTrashcan />
+                </Button>
+                <Button secondary onClick={handleEditBucketClick} loading={editResults.isLoading}>
+                    <GoPencil />
+                </Button>
+            </IconWrapper>
         </BucketItemWrapper>
     );
 }
@@ -41,10 +42,20 @@ function BucketItem({bucket}) {
 export default BucketItem;
 
 const BucketItemWrapper = styled.div`
-  
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  & > div {
+    margin: 0 0.5rem;
+  }
 `;
 
-const BucketHeader = styled.div``;
+const BucketName = styled.div`
+  flex-grow: 1;
+`;
 
 
 const IconWrapper = styled.div`

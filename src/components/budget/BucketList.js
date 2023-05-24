@@ -75,10 +75,8 @@ function BucketList({group}) {
         <BucketListWrapper>
             {showModal && modal}
             <BucketListHeader>
-                <h3>Buckets</h3>
                 <Button onClick={handleAddBucketClick} loading={results.isLoading} primary>
                     Add Bucket
-
                 </Button>
 
             </BucketListHeader>
@@ -97,13 +95,15 @@ const BucketListContent = styled.div``;
 
 
 const BucketListHeader = styled.div` 
-      margin: 0.5rem;
+  margin: 0.5rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
-  &h3 {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+
+
+  &button {
+    justify-self: end;
   }
   `;
