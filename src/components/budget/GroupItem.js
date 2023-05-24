@@ -54,9 +54,18 @@ function GroupItem({ group }) {
 
     const header = (
         <>
-            <div>
+            <GroupName>
                 {group.name}
-            </div>
+            </GroupName>
+            <GroupAmount>
+                Current: {group.totalCurrentAmount}
+            </GroupAmount>
+            <GroupAmount>
+                Recurring: {group.totalRecurringAmount}
+            </GroupAmount>
+            <GroupAmount>
+                Maximum: {group.totalMaximumAmount}
+            </GroupAmount>
             <IconWrapper>
                 <Button danger onClick={handleDeleteGroup} loading={deleteResults.isLoading}>
                     <GoTrashcan />
@@ -90,4 +99,13 @@ const IconWrapper = styled.div`
   button {
     margin: 0 0.25rem;
   }
+`;
+
+
+const GroupName = styled.div`
+  flex-grow: 1;
+`;
+
+const GroupAmount = styled.div`
+  width: 10rem;
 `;
