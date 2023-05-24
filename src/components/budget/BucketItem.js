@@ -21,12 +21,15 @@ function BucketItem({bucket}) {
             <BucketName>
                 {bucket.name}
             </BucketName>
-            <div>
-                Recurring Amount: {bucket.recurringAmount}
-            </div>
-            <div>
-                Max Amount: {bucket.maximumAmount}
-            </div>
+            <BucketAmount>
+                Current: {bucket.currentAmount}
+            </BucketAmount>
+            <BucketAmount>
+                Recurring: {bucket.recurringAmount}
+            </BucketAmount>
+            <BucketAmount>
+                Maximum: {bucket.maximumAmount}
+            </BucketAmount>
             <IconWrapper>
                 <Button danger onClick={handleDeleteBucket} loading={deleteResults.isLoading}>
                     <GoTrashcan />
@@ -57,6 +60,9 @@ const BucketName = styled.div`
   flex-grow: 1;
 `;
 
+const BucketAmount = styled.div`
+  width: 10rem;
+`;
 
 const IconWrapper = styled.div`
   display: flex;
