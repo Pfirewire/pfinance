@@ -11,7 +11,7 @@ function BucketList({group}) {
     const {data, error, isFetching } = useFetchBucketsByGroupQuery(group);
     const [addBucket, results] = useAddBucketMutation();
     const [showModal, setShowModal] = useState(false);
-    const [bucketName, setBucketName] = useState( " ");
+    const [bucketName, setBucketName] = useState( "");
     const [bucketRecurringAmount, setBucketRecurringAmount] = useState(0);
     const [bucketMaximumAmount, setBucketMaximumAmount] = useState(0);
 
@@ -21,36 +21,32 @@ function BucketList({group}) {
             recurringAmount: bucketRecurringAmount,
             maximumAmount: bucketMaximumAmount,
             group : group
-
         });
-
         handleAddBucketClose();
-    }
+    };
 
     const handleAddBucketClose = () => {
         setShowModal(false);
         setBucketName("");
         setBucketRecurringAmount(0);
         setBucketMaximumAmount(0);
-
-    }
+    };
 
     const handleAddBucketNameChange = e => {
         setBucketName(e.target.value);
-    }
+    };
 
     const handleAddBucketMaximumChange = e => {
         setBucketMaximumAmount(e.target.value);
-
-    }
+    };
 
     const handleAddBucketRecurringChange = e => {
         setBucketRecurringAmount(e.target.value);
-    }
+    };
 
     const handleAddBucketClick = () => {
         setShowModal(true);
-    }
+    };
 
     const modalActionBar = (
         <div>
@@ -101,7 +97,6 @@ const BucketListHeader = styled.div`
   justify-content: space-between;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
-
 
   &button {
     justify-self: end;
