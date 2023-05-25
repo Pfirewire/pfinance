@@ -58,7 +58,7 @@ function LoginForm() {
             body: JSON.stringify({
                 username: inputs.username,
                 password: inputs.password,
-            })
+            }),
         });
         if(results.ok) {
             const data = await results.text();
