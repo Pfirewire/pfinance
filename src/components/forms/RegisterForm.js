@@ -12,7 +12,7 @@ function RegisterForm() {
     const {jwtToken, linkToken} = useSelector(state => state.keys);
     const [inputs, setInputs] = useState({});
 
-    const handleSubmit = async () => {
+    const handleSubmit = async e => {
         e.preventDefault();
         const results = await fetch("http://localhost:8080/user/register", {
             method: 'POST',
@@ -21,8 +21,8 @@ function RegisterForm() {
             },
             body: JSON.stringify({
                 username: inputs.username,
-                password: inputs.password,
                 email: inputs.email,
+                password: inputs.password,
             }),
         });
         if(results.ok) {
