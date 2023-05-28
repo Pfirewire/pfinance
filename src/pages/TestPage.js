@@ -29,8 +29,10 @@ function TestPage() {
         console.log(data);
     };
 
-    const handleTestBalanceGetClick = () => {
-        fetch("http://localhost:8080/api/balance/get", options);
+    const handleTestBalanceGetClick = async () => {
+        const results = await fetch("http://localhost:8080/api/balance", options);
+        const data = await results.json();
+        console.log(data);
     };
 
     const handleTestGetBucketsByGroupIdClick = async () => {
