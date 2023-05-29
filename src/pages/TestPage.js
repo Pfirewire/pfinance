@@ -49,6 +49,8 @@ function TestPage() {
 
     const handleTestGetExpensesClick = async () => {
         const results = await fetch("http://localhost:8080/api/transactions", options);
+        const data = await results.json();
+        console.log(data);
     };
 
     return(
