@@ -39,13 +39,17 @@ function TestPage() {
         const results = await fetch("http://localhost:8080/api/buckets/3", options);
         const data = await results.json();
         console.log(data);
-    }
+    };
 
     const handleTestGetBucketByIdClick = async () => {
         const results = await fetch("http://localhost:8080/api/bucket/2", options);
         const data = await results.json();
         console.log(data);
-    }
+    };
+
+    const handleTestGetExpensesClick = async () => {
+        const results = await fetch("http://localhost:8080/api/transactions", options);
+    };
 
     return(
         <div>
@@ -56,6 +60,7 @@ function TestPage() {
             <button onClick={handleTestBalanceGetClick}>Test Get Balance</button>
             <button onClick={handleTestGetBucketsByGroupIdClick}>Test Get Buckets By Group Id 3</button>
             <button onClick={handleTestGetBucketByIdClick}>Test Get Buckets By Id 2</button>
+            <button onClick={handleTestGetExpensesClick}>Test Get Expenses</button>
         </div>
     );
 }
