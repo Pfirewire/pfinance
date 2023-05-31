@@ -42,13 +42,19 @@ function TestPage() {
     };
 
     const handleTestGetBucketByIdClick = async () => {
-        const results = await fetch("http://localhost:8080/api/bucket/2", options);
+        const results = await fetch("http://localhost:8080/api/bucket/1", options);
         const data = await results.json();
         console.log(data);
     };
 
     const handleTestGetExpensesClick = async () => {
         const results = await fetch("http://localhost:8080/api/transactions", options);
+        const data = await results.json();
+        console.log(data);
+    };
+
+    const handleTestGetNewPlaidLink = async () => {
+        const results = await fetch("http://localhost:8080/test/new-plaid-link", options);
         const data = await results.json();
         console.log(data);
     };
@@ -61,8 +67,9 @@ function TestPage() {
             <button onClick={handleAccessTokenClick}>Test Access Button Exists</button>
             <button onClick={handleTestBalanceGetClick}>Test Get Balance</button>
             <button onClick={handleTestGetBucketsByGroupIdClick}>Test Get Buckets By Group Id 3</button>
-            <button onClick={handleTestGetBucketByIdClick}>Test Get Buckets By Id 2</button>
+            <button onClick={handleTestGetBucketByIdClick}>Test Get Buckets By Id 1</button>
             <button onClick={handleTestGetExpensesClick}>Test Get Expenses</button>
+            <button onClick={handleTestGetNewPlaidLink}>Test New Plaid Link</button>
         </div>
     );
 }
