@@ -7,21 +7,6 @@ import {useEffect} from "react";
 function HomePage() {
     const {jwtToken} = useSelector(state => state.keys);
 
-    useEffect(() => {
-        const getGroups = async () => {
-            const results = await fetch("http://localhost:8080/api/groups", {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${jwtToken}`,
-                },
-            });
-            console.log(results);
-        };
-        if(jwtToken) {
-            getGroups();
-        }
-    });
-
     return(
         <PageWrapper>
             {jwtToken ? 'Token Received' : 'Home Page'}

@@ -1,18 +1,18 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {keysReducer, setJwtToken, setLinkToken} from "./slices/KeysSlice";
 import {setupListeners} from "@reduxjs/toolkit/query";
-import {groupsApi} from "./apis/groupsApi";
+import {categoriesApi} from "./apis/categoriesApi";
 import {bucketsApi} from "./apis/bucketsApi";
 
 const store = configureStore({
     reducer: {
         keys: keysReducer,
-        [groupsApi.reducerPath]: groupsApi.reducer,
+        [categoriesApi.reducerPath]: categoriesApi.reducer,
         [bucketsApi.reducerPath]: bucketsApi.reducer,
     },
     middleware: (getDefaultMiddleware) => {
         return getDefaultMiddleware()
-            .concat(groupsApi.middleware)
+            .concat(categoriesApi.middleware)
             .concat(bucketsApi.middleware)
         ;
     },
@@ -27,14 +27,14 @@ export {
 };
 
 export {
-    useFetchGroupsQuery,
-    useAddGroupMutation,
-    useEditGroupMutation,
-    useDeleteGroupMutation,
-} from './apis/groupsApi';
+    useFetchCategoriesQuery,
+    useAddCategoryMutation,
+    useEditCategoryMutation,
+    useDeleteCategoryMutation,
+} from './apis/categoriesApi';
 
 export {
-    useFetchBucketsByGroupQuery,
+    useFetchBucketsByCategoryQuery,
     useAddBucketMutation,
     useEditBucketMutation,
     useDeleteBucketMutation,

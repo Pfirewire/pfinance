@@ -35,7 +35,7 @@ function TestPage() {
         console.log(data);
     };
 
-    const handleTestGetBucketsByGroupIdClick = async () => {
+    const handleTestGetBucketsByCategoryIdClick = async () => {
         const results = await fetch("http://localhost:8080/api/buckets/3", options);
         const data = await results.json();
         console.log(data);
@@ -66,7 +66,7 @@ function TestPage() {
             <button onClick={handleUserTestClick}>Test User Exists</button>
             <button onClick={handleAccessTokenClick}>Test Access Button Exists</button>
             <button onClick={handleTestBalanceGetClick}>Test Get Balance</button>
-            <button onClick={handleTestGetBucketsByGroupIdClick}>Test Get Buckets By Group Id 3</button>
+            <button onClick={handleTestGetBucketsByCategoryIdClick}>Test Get Buckets By Category Id 3</button>
             <button onClick={handleTestGetBucketByIdClick}>Test Get Buckets By Id 1</button>
             <button onClick={handleTestGetExpensesClick}>Test Get Expenses</button>
             <button onClick={handleTestGetNewPlaidLink}>Test New Plaid Link</button>

@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import {useAddBucketMutation, useFetchBucketsByGroupQuery} from "../../store";
+import {useAddBucketMutation, useFetchBucketsByCategoryQuery} from "../../store";
 import {useState} from "react";
-import GroupItem from "./GroupItem";
+import CategoryItem from "./CategoryItem";
 import BucketItem from "./BucketItem";
 import Modal from "../simple/Modal";
 import Button from "../simple/Button";
 
 
-function BucketList({group}) {
-    const {data, error, isFetching } = useFetchBucketsByGroupQuery(group);
+function BucketList({category}) {
+    const {data, error, isFetching } = useFetchBucketsByCategoryQuery(category);
     const [addBucket, results] = useAddBucketMutation();
     const [showModal, setShowModal] = useState(false);
     const [bucketName, setBucketName] = useState( "");
@@ -20,7 +20,7 @@ function BucketList({group}) {
             name: bucketName,
             recurringAmount: bucketRecurringAmount,
             maximumAmount: bucketMaximumAmount,
-            group : group
+            pfCategory : category
         });
         handleAddBucketClose();
     };

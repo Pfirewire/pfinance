@@ -1,5 +1,5 @@
 import {PageWrapper} from "../styles/PageWrapper.styled";
-import GroupList from "../components/budget/GroupList";
+import CategoryList from "../components/budget/CategoryList";
 
 function BudgetPage() {
     const handleLinkAccount = () => {
@@ -9,7 +9,7 @@ function BudgetPage() {
     return(
         <PageWrapper>
             <button onClick={handleLinkAccount} />
-            <GroupList />
+            <CategoryList />
         </PageWrapper>
     );
 }

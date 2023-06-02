@@ -3,8 +3,8 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
 
 
-const groupsApi = createApi({
-    reducerPath: 'groups',
+const categoriesApi = createApi({
+    reducerPath: 'categories',
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8080/api',
         prepareHeaders: (headers, { getState }) => {
@@ -17,27 +17,27 @@ const groupsApi = createApi({
     }),
     endpoints(builder) {
         return {
-            fetchGroups: builder.query({
+            fetchCategories: builder.query({
                 providesTags: (result, error, arg) => {
-                    const tags = result.map(group => {
-                        return { type: 'Group', id: group.id };
+                    const tags = result.map(category => {
+                        return { type: 'Category', id: category.id };
                     });
-                    tags.push( {type: 'AllGroups' });
+                    tags.push( {type: 'AllCategories' });
                     return tags;
                 },
                 query() {
                     return {
-                        url: "/groups",
+                        url: "/categories",
                     };
                 },
             }),
-            addGroup: builder.mutation({
+            addCategory: builder.mutation({
                 invalidatesTags: (result, error, arg) => {
-                    return [{ type: 'AllGroups' }];
+                    return [{ type: 'AllCategories' }];
                 },
                 query: name => {
                     return {
-                        url: "/groups",
+                        url: "/categories",
                         method: 'POST',
                         body: {
                             name: name,
@@ -45,27 +45,27 @@ const groupsApi = createApi({
                     };
                 },
             }),
-            editGroup: builder.mutation({
+            editCategory: builder.mutation({
                 invalidatesTags:(result, error, arg) => {
-                    return [{ type: 'Group', id: arg.id }];
+                    return [{ type: 'Category', id: arg.id }];
                 },
-                query: group => {
+                query: category => {
                     return {
-                        url: `/group/${group.id}`,
+                        url: `/category/${category.id}`,
                         method: 'PUT',
                         body: {
-                            name: group.name
+                            name: category.name
                         },
                     };
                 },
             }),
-            deleteGroup: builder.mutation({
+            deleteCategory: builder.mutation({
                 invalidatesTags: (result, error, arg) => {
-                    return [{ type: 'Group', id: arg.id }];
+                    return [{ type: 'Category', id: arg.id }];
                 },
-                query: group => {
+                query: category => {
                     return {
-                        url: `/group/${group.id}`,
+                        url: `/category/${category.id}`,
                         method: 'DELETE',
                     };
                 },
@@ -75,9 +75,9 @@ const groupsApi = createApi({
 });
 
 export const {
-    useFetchGroupsQuery,
-    useAddGroupMutation,
-    useEditGroupMutation,
-    useDeleteGroupMutation,
-} = groupsApi;
-export {groupsApi};
+    useFetchCategoriesQuery,
+    useAddCategoryMutation,
+    useEditCategoryMutation,
+    useDeleteCategoryMutation,
+} = categoriesApi;
+export {categoriesApi};

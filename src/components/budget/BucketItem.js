@@ -24,7 +24,7 @@ function BucketItem({bucket}) {
             name: bucketName,
             recurringAmount: bucketRecurringAmount,
             maximumAmount: bucketMaximumAmount,
-            group : bucket.group
+            pfCategory : bucket.category
         });
         handleEditBucketClose();
     };

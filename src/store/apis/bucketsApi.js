@@ -15,33 +15,33 @@ const bucketsApi = createApi({
     }),
     endpoints(builder){
         return {
-            fetchBucketsByGroup: builder.query({
+            fetchBucketsByCategory: builder.query({
                 providesTags: (result, error, arg) => {
                     const tags = result.map(bucket => {
                         return { type: 'Bucket', id: bucket.id };
                     });
-                    tags.push( {type: 'GroupBuckets', id: arg.id });
+                    tags.push( {type: 'CategoryBuckets', id: arg.id });
                     return tags;
                 },
-                query(group) {
+                query(category) {
                     return {
-                        url: `/buckets/${group.id}`,
+                        url: `/buckets/${category.id}`,
                     };
                 },
             }),
             addBucket: builder.mutation({
                 invalidatesTags: (result, error, arg) => {
-                  return [{type:"GroupBuckets", id:arg.group.id}]
+                  return [{type:"CategoryBuckets", id:arg.category.id}]
                 },
                 query: bucket => {
                     return {
-                        url: `/buckets/${bucket.group.id}`,
+                        url: `/buckets/${bucket.category.id}`,
                         method: 'POST',
                         body: {
                             name: bucket.name,
                             recurringAmount: bucket.recurringAmount,
                             maximumAmount: bucket.maximumAmount,
-                            group: bucket.group,
+                            category: bucket.category,
                         }
                     }
                 }
@@ -78,7 +78,7 @@ const bucketsApi = createApi({
 });
 
 export const {
-    useFetchBucketsByGroupQuery,
+    useFetchBucketsByCategoryQuery,
     useAddBucketMutation,
     useEditBucketMutation,
     useDeleteBucketMutation,
