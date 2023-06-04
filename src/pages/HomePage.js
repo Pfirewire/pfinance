@@ -1,7 +1,5 @@
-import styled from "styled-components";
 import {PageWrapper} from "../styles/PageWrapper.styled";
 import {useSelector} from "react-redux";
-import {useEffect} from "react";
 
 
 function HomePage() {
