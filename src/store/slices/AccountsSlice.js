@@ -2,16 +2,20 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const AccountsSlice = createSlice({
     name: 'accounts',
-    initialState: [],
+    initialState: {
+        userAccounts: [],
+    },
     reducers: {
         setAccounts(state, action) {
-            state = action.payload;
+            console.log("Inside setAccounts. accounts:");
+            console.log(action.payload);
+            state.userAccounts = action.payload;
         },
         addAccount(state, action) {
-            state = [...state, action.payload];
+            state.userAccounts = [...state, action.payload];
         },
         addAccounts(state, action) {
-            state = [...state, ...action.payload];
+            state.userAccounts = [...state, ...action.payload];
         }
     },
 });

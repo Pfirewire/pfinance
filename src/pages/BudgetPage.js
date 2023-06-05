@@ -2,7 +2,7 @@ import {PageWrapper} from "../styles/PageWrapper.styled";
 import CategoryList from "../components/budget/CategoryList";
 import Budget from "../components/budget/Budget";
 import Button from "../components/simple/Button";
-import {setLinkToken} from "../store";
+import {addAccounts, setLinkToken} from "../store";
 import {useDispatch, useSelector} from "react-redux";
 import {usePlaidLink} from "react-plaid-link";
 import {useEffect, useState} from "react";
@@ -12,7 +12,9 @@ function BudgetPage() {
     const dispatch = useDispatch();
     const {navigate} = useNavigation();
     const {jwtToken, linkToken} = useSelector(state => state.keys);
-    const [accounts, setAccounts] = useState([]);
+    const [addingAccount, setAddingAccount] = useState(false);
+    const {userAccounts} = useSelector(state => state.accounts);
+    console.log(userAccounts);
     const config = {
         onSuccess: async (public_token, metadata) => {
             console.log("Success");
@@ -28,9 +30,8 @@ function BudgetPage() {
             console.log(results);
             const data = await results.json();
             console.log(data);
-            for(const account of data) {
-
-            }
+            dispatch(addAccounts(data));
+            setAddingAccount(false);
             // navigate("/");
         },
         onExit: (err, metadata) => {
@@ -56,21 +57,30 @@ function BudgetPage() {
         console.log(data);
         await dispatch(setLinkToken(data));
         console.log(linkToken);
+        setAddingAccount(true);
     };
 
-    // useEffect(() => {
-    //     if(ready) {
-    //         open()
-    //     }
-    // }, [open, ready]);
+    const accountElements = userAccounts.map((account, index) => {
+        return (
+            <div key={index}>
+                {account.name}: ${account.availableBalance}
+            </div>
+        );
+    });
+
+    useEffect(() => {
+        if(ready && addingAccount) {
+            open()
+        }
+    }, [open, ready, addingAccount]);
 
     const handleLinkAccount = async () => {
         await createLinkToken();
-        if(ready) open();
     };
 
     return(
         <PageWrapper>
+            {accountElements}
             <Button onClick={handleLinkAccount} primary>
                 + Add Bank Account
             </Button>

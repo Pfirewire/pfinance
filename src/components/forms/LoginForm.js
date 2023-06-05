@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setJwtToken, setLinkToken} from "../../store";
+import {setAccounts} from "../../store";
 import useNavigation from "../../hooks/use-navigation";
 import {usePlaidLink} from "react-plaid-link";
 import Button from "../simple/Button";
@@ -48,6 +49,20 @@ function LoginForm() {
         setInputs(values => ({...values, [name]: value}))
     };
 
+    const getUserAccounts = async token => {
+        console.log("Inside getUserAccounts");
+        const results = await fetch("http://localhost:8080/api/accounts", {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        });
+        console.log(results);
+        const data = await results.json();
+        console.log(data);
+        return data;
+    };
+
     const handleSubmit = async e => {
         e.preventDefault();
         const results = await fetch("http://localhost:8080/login", {
@@ -63,6 +78,8 @@ function LoginForm() {
         if(results.ok) {
             const data = await results.text();
             await dispatch(setJwtToken(data));
+            const accounts = await getUserAccounts(data);
+            dispatch(setAccounts(accounts));
             // const userStatus = await checkUserStatus(data);
             // console.log(userStatus.tokenExists);
             // if(!userStatus.tokenExists){
