@@ -1,5 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {keysReducer, setJwtToken, setLinkToken} from "./slices/KeysSlice";
+import {accountsReducer, setAccounts, addAccount, addAccounts} from "./slices/AccountsSlice";
 import {setupListeners} from "@reduxjs/toolkit/query";
 import {budgetsApi} from "./apis/budgetsApi";
 import {categoriesApi} from "./apis/categoriesApi";
@@ -8,6 +9,7 @@ import {bucketsApi} from "./apis/bucketsApi";
 const store = configureStore({
     reducer: {
         keys: keysReducer,
+        accounts: accountsReducer,
         [budgetsApi.reducerPath]: budgetsApi.reducer,
         [categoriesApi.reducerPath]: categoriesApi.reducer,
         [bucketsApi.reducerPath]: bucketsApi.reducer,
@@ -26,7 +28,10 @@ setupListeners(store.dispatch);
 export {
     store,
     setJwtToken,
-    setLinkToken
+    setLinkToken,
+    setAccounts,
+    addAccount,
+    addAccounts
 };
 
 export {
