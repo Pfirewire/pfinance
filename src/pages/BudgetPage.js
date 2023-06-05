@@ -1,5 +1,6 @@
 import {PageWrapper} from "../styles/PageWrapper.styled";
 import CategoryList from "../components/budget/CategoryList";
+import Budget from "../components/budget/Budget";
 
 function BudgetPage() {
     const handleLinkAccount = () => {
@@ -9,7 +10,8 @@ function BudgetPage() {
     return(
         <PageWrapper>
             <button onClick={handleLinkAccount} />
-            <CategoryList />
+            {/*<CategoryList />*/}
+            <Budget />
         </PageWrapper>
     );
 }

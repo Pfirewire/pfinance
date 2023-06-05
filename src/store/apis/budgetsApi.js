@@ -3,8 +3,8 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
 
 
-const budgetApi = createApi({
-    reducerPath: 'budget',
+const budgetsApi = createApi({
+    reducerPath: 'budgets',
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8080/api',
         prepareHeaders: (headers, { getState }) => {
@@ -17,10 +17,10 @@ const budgetApi = createApi({
     }),
     endpoints(builder) {
         return {
-            fetchBudget: builder.query({
+            fetchCurrentBudget: builder.query({
                 query() {
                     return {
-                        url: "/groups",
+                        url: "/budget/current",
                     };
                 },
             }),
@@ -29,6 +29,6 @@ const budgetApi = createApi({
 });
 
 export const {
-    useFetchBudgetQuery
-} = budgetApi;
-export {budgetApi};
+    useFetchCurrentBudgetQuery
+} = budgetsApi;
+export {budgetsApi};
