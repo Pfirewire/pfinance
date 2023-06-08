@@ -51,12 +51,14 @@ function LoginForm() {
 
     const getUserAccounts = async token => {
         console.log("Inside getUserAccounts");
-        const results = await fetch("http://localhost:8080/api/accounts", {
-            method: 'GET',
+        const options = {
+            method: "GET",
             headers: {
                 'Authorization': `Bearer ${token}`,
             }
-        });
+        };
+        console.log(options);
+        const results = await fetch("http://localhost:8080/api/accounts", options);
         console.log(results);
         const data = await results.json();
         console.log(data);
@@ -77,6 +79,7 @@ function LoginForm() {
         });
         if(results.ok) {
             const data = await results.text();
+            console.log(data);
             await dispatch(setJwtToken(data));
             const accounts = await getUserAccounts(data);
             dispatch(setAccounts(accounts));
