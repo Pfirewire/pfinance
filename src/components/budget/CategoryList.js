@@ -6,8 +6,8 @@ import Button from "../simple/Button";
 import Modal from "../simple/Modal";
 
 
-function CategoryList() {
-    const { data, error, isFetching } = useFetchCategoriesQuery();
+function CategoryList({ budget }) {
+    const { data, error, isFetching } = useFetchCategoriesQuery(budget);
     const [addCategory, results] = useAddCategoryMutation();
     const [showModal, setShowModal] = useState(false);
     const [addCategoryName, setAddCategoryName] = useState('');
@@ -26,7 +26,8 @@ function CategoryList() {
     };
 
     const handleAddCategory = () => {
-        addCategory(addCategoryName);
+        console.log("Adding category:", budget, addCategoryName);
+        addCategory({budget, name: addCategoryName});
         handleAddCategoryClose();
     };
 

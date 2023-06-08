@@ -25,9 +25,9 @@ const categoriesApi = createApi({
                     tags.push( {type: 'AllCategories' });
                     return tags;
                 },
-                query() {
+                query: budget => {
                     return {
-                        url: "/categories",
+                        url: `/categories/${budget.id}`,
                     };
                 },
             }),
@@ -35,12 +35,14 @@ const categoriesApi = createApi({
                 invalidatesTags: (result, error, arg) => {
                     return [{ type: 'AllCategories' }];
                 },
-                query: name => {
+                query: arg => {
+                    console.log(arg.name);
+                    console.log(arg.budget);
                     return {
-                        url: "/categories",
+                        url: `/categories/${arg.budget.id}`,
                         method: 'POST',
                         body: {
-                            name: name,
+                            name: arg.name,
                         },
                     };
                 },

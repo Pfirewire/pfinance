@@ -77,6 +77,7 @@ function LoginForm() {
                 password: inputs.password,
             }),
         });
+        console.log(results);
         if(results.ok) {
             const data = await results.text();
             console.log(data);
