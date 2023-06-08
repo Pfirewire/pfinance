@@ -24,7 +24,7 @@ function BucketItem({bucket}) {
             name: bucketName,
             recurringAmount: bucketRecurringAmount,
             maximumAmount: bucketMaximumAmount,
-            pfCategory : bucket.category
+            category : bucket.category
         });
         handleEditBucketClose();
     };
@@ -73,7 +73,7 @@ function BucketItem({bucket}) {
                 {bucket.name}
             </BucketName>
             <BucketAmount>
-                Current: {bucket.currentAmount}
+                Available: {bucket.availableAmount}
             </BucketAmount>
             <BucketAmount>
                 Recurring: {bucket.recurringAmount}

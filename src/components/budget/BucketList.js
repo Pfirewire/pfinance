@@ -16,12 +16,14 @@ function BucketList({category}) {
     const [bucketMaximumAmount, setBucketMaximumAmount] = useState(0);
 
     const handleAddBucket = () => {
-        addBucket({
+        const bucketToAdd = {
             name: bucketName,
             recurringAmount: bucketRecurringAmount,
             maximumAmount: bucketMaximumAmount,
-            pfCategory : category
-        });
+            category : category
+        };
+        console.log(bucketToAdd);
+        addBucket(bucketToAdd);
         handleAddBucketClose();
     };
 

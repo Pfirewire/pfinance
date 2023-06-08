@@ -40,8 +40,7 @@ const bucketsApi = createApi({
                         body: {
                             name: bucket.name,
                             recurringAmount: bucket.recurringAmount,
-                            maximumAmount: bucket.maximumAmount,
-                            category: bucket.category,
+                            maximumAmount: bucket.maximumAmount
                         }
                     }
                 }

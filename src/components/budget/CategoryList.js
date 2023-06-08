@@ -7,6 +7,7 @@ import Modal from "../simple/Modal";
 
 
 function CategoryList({ budget }) {
+    console.log(budget);
     const { data, error, isFetching } = useFetchCategoriesQuery(budget);
     const [addCategory, results] = useAddCategoryMutation();
     const [showModal, setShowModal] = useState(false);
