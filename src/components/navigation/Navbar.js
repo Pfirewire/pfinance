@@ -34,6 +34,7 @@ const NavbarWrapper = styled.nav`
   
   & a {
     margin: 0 2rem;
+    color: var(--prussian-blue);
   }
   
   & a:visited {
