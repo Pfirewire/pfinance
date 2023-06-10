@@ -5,6 +5,7 @@ import {setupListeners} from "@reduxjs/toolkit/query";
 import {budgetsApi} from "./apis/budgetsApi";
 import {categoriesApi} from "./apis/categoriesApi";
 import {bucketsApi} from "./apis/bucketsApi";
+import {transactionsApi} from "./apis/transactionsApi";
 
 const store = configureStore({
     reducer: {
@@ -13,12 +14,14 @@ const store = configureStore({
         [budgetsApi.reducerPath]: budgetsApi.reducer,
         [categoriesApi.reducerPath]: categoriesApi.reducer,
         [bucketsApi.reducerPath]: bucketsApi.reducer,
+        [transactionsApi.reducerPath]: transactionsApi.reducer,
     },
     middleware: (getDefaultMiddleware) => {
         return getDefaultMiddleware()
             .concat(budgetsApi.middleware)
             .concat(categoriesApi.middleware)
             .concat(bucketsApi.middleware)
+            .concat(transactionsApi.middleware)
         ;
     },
 });
@@ -51,3 +54,7 @@ export {
     useEditBucketMutation,
     useDeleteBucketMutation,
 } from './apis/bucketsApi';
+
+export {
+
+} from './apis/transactionsApi';
