@@ -14,11 +14,25 @@ const transactionsApi = createApi({
         },
     }),
     endpoints(builder) {
-
+        return {
+            fetchTransactionsByAccountAndDays: builder.query({
+                providesTags: (result, error, arg) => {
+                    const tags = result.map(transaction => {
+                        return { type: 'Transaction', id: transaction.id };
+                    });
+                    tags.push({ type: 'AccountTransaction', id: arg.account.id })
+                },
+                query(arg) {
+                    return {
+                        url: `/transactions/${arg.account.id}/${arg.days}`,
+                    };
+                },
+            }),
+        };
     },
 });
 
 export const {
-
+    useFetchTransactionsByAccountAndDaysQuery,
 } = transactionsApi;
 export {transactionsApi};

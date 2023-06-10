@@ -56,5 +56,5 @@ export {
 } from './apis/bucketsApi';
 
 export {
-
+    useFetchTransactionsByAccountAndDaysQuery,
 } from './apis/transactionsApi';
