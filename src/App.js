@@ -7,6 +7,7 @@ import BudgetPage from "./pages/BudgetPage";
 import {useSelector} from "react-redux";
 import TestPage from "./pages/TestPage";
 import "./fonts/Cera Pro Black.ttf";
+import TransactionPage from "./pages/TransactionPage";
 
 function App() {
     const {jwtToken} = useSelector(state => state.keys);
@@ -22,6 +23,9 @@ function App() {
                 </Route>
                 <Route path={"/budget"}>
                     <BudgetPage />
+                </Route>
+                <Route path={"/transactions"}>
+                    <TransactionPage />
                 </Route>
                 <Route path={"/login"}>
                     <LoginPage />

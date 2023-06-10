@@ -12,6 +12,7 @@ function Navbar() {
                 <Link to={"/"}>Home</Link>
                 <Link to={"/test"}>Tests</Link>
                 {jwtToken && <Link to={"/budget"}>Budget</Link>}
+                {jwtToken && <Link to={"/transactions"}>Transactions</Link>}
             </div>
             <Link to={"/login"}>Login</Link>
         </NavbarWrapper>
