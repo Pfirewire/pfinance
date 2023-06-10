@@ -1,7 +1,7 @@
 import {PageWrapper} from "../styles/PageWrapper.styled";
 import {useSelector} from "react-redux";
 import {TabList, Tabs, Tab, TabPanel} from "@mui/joy";
-import AccountTransactionList from "../components/budget/AccountTransactionList";
+import AccountTransactionList from "../components/transactions/AccountTransactionList";
 
 
 function TransactionPage() {

@@ -20,11 +20,14 @@ const transactionsApi = createApi({
                     const tags = result.map(transaction => {
                         return { type: 'Transaction', id: transaction.id };
                     });
-                    tags.push({ type: 'AccountTransaction', id: arg.account.id })
+                    tags.push({ type: 'AccountTransaction', id: arg.accountId });
+                    return tags;
                 },
-                query(arg) {
+                query: arg => {
+                    console.log(arg.accountId);
+                    console.log(arg.days);
                     return {
-                        url: `/transactions/${arg.account.id}/${arg.days}`,
+                        url: `/transactions/${arg.accountId}/${arg.days}`,
                     };
                 },
             }),
